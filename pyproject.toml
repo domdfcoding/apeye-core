@@ -61,7 +61,7 @@ package = "apeye_core"
 additional-files = [ "include apeye_core/public_suffix_list.dat",]
 
 [tool.mypy]
-python_version = "3.6"
+python_version = "3.8"
 namespace_packages = true
 check_untyped_defs = true
 warn_unused_ignores = true
