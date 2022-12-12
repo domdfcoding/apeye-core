@@ -1,6 +1,6 @@
 [build-system]
-requires = [ "flit-core<4,>=3.2",]
-build-backend = "flit_core.buildapi"
+requires = [ "hatch-requirements-txt",]
+build-backend = "hatchling.build"
 
 [project]
 name = "apeye-core"
@@ -26,8 +26,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
-dependencies = [ "domdf-python-tools>=2.6.0", "idna>=2.5",]
-dynamic = []
+dynamic = [ "dependencies",]
 
 [[project.authors]]
 name = "Dominic Davis-Foster"
@@ -81,6 +80,16 @@ include = false
 [tool.flit.module]
 name = "apeye_core"
 
+[tool.hatch.build]
+exclude = [
+    "/*",
+    "!/apeye_core",
+    "!/apeye_core/**/requirements.txt",
+    "!/requirements.txt",
+    "tests",
+    "doc-source",
+]
+
 [tool.snippet-fmt.languages.python]
 reformat = true
 
@@ -90,3 +99,12 @@ reformat = true
 [tool.snippet-fmt.languages.ini]
 
 [tool.snippet-fmt.languages.json]
+
+[tool.hatch.build.sdist]
+include = [ "apeye_core", "requirements.txt",]
+
+[tool.hatch.build.wheel]
+include = [ "apeye_core",]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = [ "requirements.txt",]

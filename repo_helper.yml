@@ -11,7 +11,7 @@ short_desc: 'Core (offline) functionality for the apeye library.'
 
 min_coverage: 94
 enable_docs: false
-use_flit: true
+use_hatch: True
 
 conda_channels:
  - conda-forge
