@@ -523,7 +523,7 @@ class URL(os.PathLike):
 		return self.path.suffixes
 
 	@property
-	def stem(self):
+	def stem(self) -> str:
 		"""
 		The final path component, minus its last suffix.
 		"""
