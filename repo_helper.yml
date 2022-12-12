@@ -16,6 +16,8 @@ use_hatch: True
 conda_channels:
  - conda-forge
 
+on_conda_forge: true
+
 python_versions:
  - '3.6'
  - '3.7'
