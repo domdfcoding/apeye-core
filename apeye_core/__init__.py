@@ -129,9 +129,9 @@ class URLPath(pathlib.PurePosixPath):
 	@classmethod
 	def _format_parsed_parts(cls, drv, root, parts):
 		if drv or root:
-			return drv + root + pathlib._posix_flavour.join(parts[1:])  # type: ignore
+			return drv + root + '/'.join(parts[1:])
 		else:
-			return pathlib._posix_flavour.join(parts)  # type: ignore
+			return '/'.join(parts)
 
 	def is_absolute(self) -> bool:
 		"""
