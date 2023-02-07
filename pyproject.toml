@@ -78,9 +78,6 @@ order = 10
 order = 20
 include = false
 
-[tool.flit.module]
-name = "apeye_core"
-
 [tool.hatch.build]
 exclude = [
     "/*",
