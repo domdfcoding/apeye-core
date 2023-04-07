@@ -118,7 +118,7 @@ class URLPath(pathlib.PurePosixPath):
 		"""
 
 		if not hasattr(self, "_root"):
-			self._load_parts()
+			self._load_parts()  # type: ignore[attr-defined]
 
 		try:
 			return self._str  # type: ignore
@@ -126,7 +126,7 @@ class URLPath(pathlib.PurePosixPath):
 			self._str = self._format_parsed_parts(self._drv, self._root, self._parts) or ''  # type: ignore
 			return self._str
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return super().__repr__()
 
 	@classmethod
