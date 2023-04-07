@@ -376,6 +376,9 @@ def test_email_valid(
 						),
 				("local_part_only@", "There must be something after the @-sign."),
 				("dom@example.com.", "An email address cannot end with a period."),
+				("☃@example.com.".encode(), "The email address is not valid ASCII."),
+				("dom@ex@mple.com", "The email address is not valid. It must have exactly one @-sign."),
+				("example.com", "The email address is not valid. It must have exactly one @-sign."),
 				],
 		)
 def test_email_invalid(email_input: str, error_msg: str):
