@@ -48,6 +48,7 @@ import ipaddress
 import os
 import pathlib
 import re
+import sys
 from operator import attrgetter
 from typing import (
 		TYPE_CHECKING,
@@ -123,7 +124,12 @@ class URLPath(pathlib.PurePosixPath):
 		try:
 			return self._str  # type: ignore
 		except AttributeError:
-			self._str = self._format_parsed_parts(self._drv, self._root, self._parts) or ''  # type: ignore
+			if hasattr(self, "_parts"):
+				parts = self._parts
+			else:
+				parts = self._tail
+
+			self._str = self._format_parsed_parts(self._drv, self._root, parts) or ''  # type: ignore
 			return self._str
 
 	def __repr__(self) -> str:
@@ -131,8 +137,12 @@ class URLPath(pathlib.PurePosixPath):
 
 	@classmethod
 	def _format_parsed_parts(cls, drv, root, parts):
+
 		if drv or root:
-			return drv + root + '/'.join(parts[1:])
+			if sys.version_info > (3, 12):
+				return drv + root + '/'.join(parts)
+			else:
+				return drv + root + '/'.join(parts[1:])
 		else:
 			return '/'.join(parts)
 
