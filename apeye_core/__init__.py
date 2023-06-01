@@ -81,7 +81,7 @@ if TYPE_CHECKING:
 __author__: str = "Dominic Davis-Foster"
 __copyright__: str = "2020-2022 Dominic Davis-Foster"
 __license__: str = "BSD 3-Clause License"
-__version__: str = "1.1.3"
+__version__: str = "1.1.4"
 __email__: str = "dominic@davis-foster.co.uk"
 
 __all__ = ["URL", "URLPath", "Domain", "URLType", "URLPathType"]
