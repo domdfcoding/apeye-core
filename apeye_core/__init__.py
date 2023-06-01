@@ -125,9 +125,9 @@ class URLPath(pathlib.PurePosixPath):
 			return self._str  # type: ignore
 		except AttributeError:
 			if hasattr(self, "_parts"):
-				parts = self._parts
+				parts = self._parts  # type: ignore[attr-defined]
 			else:
-				parts = self._tail
+				parts = self._tail  # type: ignore[attr-defined]
 
 			self._str = self._format_parsed_parts(self._drv, self._root, parts) or ''  # type: ignore
 			return self._str
