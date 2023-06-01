@@ -4,7 +4,7 @@ import pathlib
 import sys
 from abc import ABC, abstractmethod
 from ipaddress import IPv4Address
-from typing import Any, Callable, List, Optional, Sequence, Type, Union
+from typing import Any, Callable, Optional, Sequence, Type, Union
 
 # 3rd party
 import pytest
