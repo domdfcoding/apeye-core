@@ -852,3 +852,7 @@ def test_domain_class():
 	assert iv4d.registered_domain == ''
 	assert iv4d.ipv4 == IPv4Address("127.0.0.1")
 	assert repr(iv4d) == "Domain(subdomain='', domain='127.0.0.1', suffix='')"
+
+
+def test_string():
+	assert str(URLPath("/hello/world")) == "/hello/world"

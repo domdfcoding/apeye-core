@@ -118,7 +118,7 @@ class URLPath(pathlib.PurePosixPath):
 		Return the string representation of the path, suitable for passing to system calls.
 		"""
 
-		if not hasattr(self, "_root"):
+		if not hasattr(self, "_root") and hasattr(self, "_load_parts"):
 			self._load_parts()  # type: ignore[attr-defined]
 
 		try:
