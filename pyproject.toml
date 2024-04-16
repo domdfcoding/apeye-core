@@ -34,7 +34,6 @@ dynamic = [ "dependencies",]
 name = "Dominic Davis-Foster"
 email = "dominic@davis-foster.co.uk"
 
-
 [project.license]
 file = "LICENSE"
 
@@ -72,6 +71,16 @@ show_error_codes = true
 [tool.snippet-fmt]
 directives = [ "code-block",]
 
+[tool.snippet-fmt.languages.python]
+reformat = true
+
+[tool.snippet-fmt.languages.TOML]
+reformat = true
+
+[tool.snippet-fmt.languages.ini]
+
+[tool.snippet-fmt.languages.json]
+
 [tool.dependency-dash."requirements.txt"]
 order = 10
 
@@ -88,16 +97,6 @@ exclude = [
     "tests",
     "doc-source",
 ]
-
-[tool.snippet-fmt.languages.python]
-reformat = true
-
-[tool.snippet-fmt.languages.TOML]
-reformat = true
-
-[tool.snippet-fmt.languages.ini]
-
-[tool.snippet-fmt.languages.json]
 
 [tool.hatch.build.sdist]
 include = [ "apeye_core", "requirements.txt",]
