@@ -119,7 +119,7 @@ class URLPath(pathlib.PurePosixPath):
 		"""
 
 		if not hasattr(self, "_root") and hasattr(self, "_load_parts"):
-			self._load_parts()  # type: ignore[attr-defined]
+			self._load_parts()
 
 		try:
 			return self._str  # type: ignore
