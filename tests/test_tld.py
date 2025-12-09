@@ -43,7 +43,7 @@ def assert_extract(
 		url: str,
 		expected_domain_data: Tuple[str, ...],
 		expected_ip_data: Optional[IPv4Address] = None,
-		):
+		) -> None:
 	(expected_fqdn, expected_subdomain, expected_domain, expected_tld) = expected_domain_data
 	ext = Domain._make(extract_tld(url))
 	assert expected_fqdn == ext.fqdn

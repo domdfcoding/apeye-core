@@ -157,7 +157,7 @@ class ValidatedEmail:
 
 		return f"<ValidatedEmail {self.email}>"
 
-	def __eq__(self, other) -> bool:
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		"""
 		Return ``self == other``.
 		"""
@@ -185,7 +185,7 @@ class ValidatedEmail:
 				}
 
 
-def __get_length_reason(addr: str, utf8: bool = False, limit: int = EMAIL_MAX_LENGTH):
+def __get_length_reason(addr: str, utf8: bool = False, limit: int = EMAIL_MAX_LENGTH) -> str:
 	diff = len(addr) - limit
 	prefix = "at least " if utf8 else ''
 	suffix = 's' if diff > 1 else ''
@@ -473,7 +473,7 @@ def validate_email_domain_part(domain: str) -> Dict[str, str]:
 			}
 
 
-def main():  # noqa: D103
+def main() -> None:  # noqa: D103
 	# stdlib
 	import json
 
@@ -495,4 +495,4 @@ def main():  # noqa: D103
 
 
 if __name__ == "__main__":
-	sys.exit(main())
+	main()

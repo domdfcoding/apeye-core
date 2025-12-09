@@ -125,7 +125,7 @@ class URLPath(pathlib.PurePosixPath):
 			return self._str  # type: ignore
 		except AttributeError:
 			if hasattr(self, "_parts"):
-				parts = self._parts  # type: ignore[attr-defined]
+				parts = self._parts
 			else:
 				parts = self._tail  # type: ignore[attr-defined]
 
@@ -136,7 +136,7 @@ class URLPath(pathlib.PurePosixPath):
 		return super().__repr__()
 
 	@classmethod
-	def _format_parsed_parts(cls, drv, root, parts):
+	def _format_parsed_parts(cls, drv: str, root: str, parts: List[str]) -> str:
 
 		if drv or root:
 			if sys.version_info > (3, 12):
@@ -443,7 +443,7 @@ class URL(os.PathLike):
 
 		return f"{self.netloc}{self.path}"
 
-	def __eq__(self, other) -> bool:
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		"""
 		Return ``self == other``.
 
@@ -463,31 +463,31 @@ class URL(os.PathLike):
 		else:
 			return NotImplemented
 
-	def __lt__(self, other):
+	def __lt__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, URL):
 			return self._parts_port < other._parts_port
 		else:
 			return NotImplemented
 
-	def __le__(self, other):
+	def __le__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, URL):
 			return self._parts_port <= other._parts_port
 		else:
 			return NotImplemented
 
-	def __gt__(self, other):
+	def __gt__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, URL):
 			return self._parts_port > other._parts_port
 		else:
 			return NotImplemented
 
-	def __ge__(self, other):
+	def __ge__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, URL):
 			return self._parts_port >= other._parts_port
 		else:
 			return NotImplemented
 
-	def strict_compare(self, other) -> bool:
+	def strict_compare(self, other) -> bool:  # noqa: MAN001
 		"""
 		Return ``self ≡ other``, comparing the scheme, netloc, path, fragment and query parameters.
 
@@ -726,7 +726,7 @@ class Domain(NamedTuple):
 	suffix: str
 
 	@property
-	def registered_domain(self):
+	def registered_domain(self) -> str:
 		"""
 		Joins the domain and suffix fields with a dot, if they're both set.
 
@@ -742,7 +742,7 @@ class Domain(NamedTuple):
 		return ''
 
 	@property
-	def fqdn(self):
+	def fqdn(self) -> str:
 		"""
 		Returns a Fully Qualified Domain Name, if there is a proper domain/suffix.
 
