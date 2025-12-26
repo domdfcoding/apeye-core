@@ -122,14 +122,14 @@ class URLPath(pathlib.PurePosixPath):
 			self._load_parts()
 
 		try:
-			return self._str  # type: ignore
+			return self._str  # type: ignore[has-type]
 		except AttributeError:
 			if hasattr(self, "_parts"):
 				parts = self._parts
 			else:
 				parts = self._tail  # type: ignore[attr-defined]
 
-			self._str = self._format_parsed_parts(self._drv, self._root, parts) or ''  # type: ignore
+			self._str = self._format_parsed_parts(self._drv, self._root, parts) or ''  # type: ignore[attr-defined]
 			return self._str
 
 	def __repr__(self) -> str:
@@ -571,7 +571,7 @@ class URL(os.PathLike):
 				self.scheme,
 				self.netloc,
 				self.path.with_name(name),
-				**kwargs,  # type: ignore
+				**kwargs,  # type: ignore[arg-type]
 				)
 
 	def with_suffix(self: URLType, suffix: str, inherit: bool = True) -> URLType:
@@ -600,7 +600,7 @@ class URL(os.PathLike):
 				self.scheme,
 				self.netloc,
 				self.path.with_suffix(suffix),
-				**kwargs,  # type: ignore
+				**kwargs,  # type: ignore[arg-type]
 				)
 
 	@property
