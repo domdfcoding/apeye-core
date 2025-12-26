@@ -297,46 +297,46 @@ def test_email_valid(
 						{
 								"The domain name baddash.-.com contains invalid characters (Label must not start or end with a hyphen).",
 								"The domain name baddash.-.com contains invalid characters (The label b'-' is not a valid A-label).",
-								}
+								},
 						),
 				(
 						"my@baddash.-a.com",
 						{
 								"The domain name baddash.-a.com contains invalid characters (Label must not start or end with a hyphen).",
 								"The domain name baddash.-a.com contains invalid characters (The label b'-a' is not a valid A-label).",
-								}
+								},
 						),
 				(
 						"my@baddash.b-.com",
 						{
 								"The domain name baddash.b-.com contains invalid characters (Label must not start or end with a hyphen).",
-								"The domain name baddash.b-.com contains invalid characters (The label b'b-' is not a valid A-label)."
-								}
+								"The domain name baddash.b-.com contains invalid characters (The label b'b-' is not a valid A-label).",
+								},
 						),
 				(
 						'my@example.com\n',
 						{
 								'The domain name example.com\n contains invalid characters (Codepoint U+000A at position 4 of \'com\\n\' not allowed).',
 								"The domain name example.com\n contains invalid characters (Codepoint U+000A not allowed at position 12 in 'example.com\\n').",
-								}
+								},
 						),
 				(
 						'my@example\n.com',
 						{
 								"The domain name example\n.com contains invalid characters (Codepoint U+000A at position 8 of 'example\\n' not allowed).",
 								"The domain name example\n.com contains invalid characters (Codepoint U+000A not allowed at position 8 in 'example\\n.com').",
-								}
+								},
 						),
 				(".leadingdot@domain.com", "The email address contains invalid characters before the @-sign: .."),
 				("..twodots@domain.com", "The email address contains invalid characters before the @-sign: .."),
 				(
 						"twodots..here@domain.com",
-						"The email address contains invalid characters before the @-sign: .."
+						"The email address contains invalid characters before the @-sign: ..",
 						),
 				(
 						"me@⒈wouldbeinvalid.com",
 						"The domain name ⒈wouldbeinvalid.com contains invalid characters (Codepoint U+2488 not allowed "
-						"at position 1 in '⒈wouldbeinvalid.com')."
+						"at position 1 in '⒈wouldbeinvalid.com').",
 						),
 				("@example.com", "There must be something before the @-sign."),
 				('\nmy@example.com', 'The email address contains invalid characters before the @-sign: \n.'),
@@ -344,35 +344,35 @@ def test_email_valid(
 				('my\n@example.com', 'The email address contains invalid characters before the @-sign: \n.'),
 				(
 						"11111111112222222222333333333344444444445555555555666666666677777@example.com",
-						"The email address is too long before the @-sign (1 character too many)."
+						"The email address is too long before the @-sign (1 character too many).",
 						),
 				(
 						"111111111122222222223333333333444444444455555555556666666666777777@example.com",
-						"The email address is too long before the @-sign (2 characters too many)."
+						"The email address is too long before the @-sign (2 characters too many).",
 						),
 				(
 						"me@1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.111111111122222222223333333333444444444455555555556.com",
-						"The email address is too long after the @-sign."
+						"The email address is too long after the @-sign.",
 						),
 				(
 						"my.long.address@1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.11111111112222222222333333333344444.info",
-						"The email address is too long (2 characters too many)."
+						"The email address is too long (2 characters too many).",
 						),
 				(
 						"my.long.address@λ111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.11111111112222222222333333.info",
-						"The email address is too long (when converted to IDNA ASCII)."
+						"The email address is too long (when converted to IDNA ASCII).",
 						),
 				(
 						"my.long.address@λ111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444.info",
-						"The email address is too long (at least 1 character too many)."
+						"The email address is too long (at least 1 character too many).",
 						),
 				(
 						"my.λong.address@1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.111111111122222222223333333333444.info",
-						"The email address is too long (when encoded in bytes)."
+						"The email address is too long (when encoded in bytes).",
 						),
 				(
 						"my.λong.address@1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444444444555555555.6666666666777777777788888888889999999999000000000.1111111111222222222233333333334444.info",
-						"The email address is too long (at least 1 character too many)."
+						"The email address is too long (at least 1 character too many).",
 						),
 				("local_part_only@", "There must be something after the @-sign."),
 				("dom@example.com.", "An email address cannot end with a period."),

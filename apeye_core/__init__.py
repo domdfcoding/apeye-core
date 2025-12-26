@@ -155,7 +155,7 @@ class URLPath(pathlib.PurePosixPath):
 
 		return self.root == '/'
 
-	def joinpath(self: URLPathType, *args) -> URLPathType:
+	def joinpath(self: URLPathType, *args) -> URLPathType:  # noqa: PRM002
 		"""
 		Combine this :class:`~.apeye.url.URLPath` with one or several arguments.
 
@@ -352,6 +352,8 @@ class URL(os.PathLike):
 		"""
 		Construct a new :class:`~apeye.url.URL` object for the given child of this :class:`~apeye.url.URL`.
 
+		:param key:
+
 		:rtype:
 
 		.. versionchanged:: 0.7.0
@@ -374,6 +376,8 @@ class URL(os.PathLike):
 		.. versionadded:: 1.1.0  (private)
 
 		Except for the final path element any queries and fragments are ignored.
+
+		:param args:
 
 		:returns: A new :class:`~.apeye.url.URL` representing either a subpath
 			(if all arguments are relative paths) or a totally different path
@@ -420,12 +424,14 @@ class URL(os.PathLike):
 		return new_path
 
 	def joinurl(self: URLType, *args) -> URLType:
-		"""
+		r"""
 		Construct a new :class:`~apeye.url.URL` object by combining the given arguments with this instance's path part.
 
 		.. versionadded:: 1.1.0
 
 		Except for the final path element any queries and fragments are ignored.
+
+		:param \*args:
 
 		:returns: A new :class:`~.apeye.url.URL` representing either a subpath
 			(if all arguments are relative paths) or a totally different path
@@ -443,7 +449,7 @@ class URL(os.PathLike):
 
 		return f"{self.netloc}{self.path}"
 
-	def __eq__(self, other) -> bool:  # noqa: MAN001
+	def __eq__(self, other) -> bool:  # noqa: MAN001,PRM002
 		"""
 		Return ``self == other``.
 
@@ -487,7 +493,7 @@ class URL(os.PathLike):
 		else:
 			return NotImplemented
 
-	def strict_compare(self, other) -> bool:  # noqa: MAN001
+	def strict_compare(self, other) -> bool:  # noqa: MAN001,PRM002
 		"""
 		Return ``self ≡ other``, comparing the scheme, netloc, path, fragment and query parameters.
 

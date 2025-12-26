@@ -68,7 +68,7 @@ def test_no_subdomain():
 def test_nested_subdomain():
 	assert_extract(
 			"https://media.forums.theregister.co.uk",
-			("media.forums.theregister.co.uk", "media.forums", "theregister", "co.uk")
+			("media.forums.theregister.co.uk", "media.forums", "theregister", "co.uk"),
 			)
 
 
@@ -90,10 +90,11 @@ def test_local_host():
 def test_qualified_local_host():
 	assert_extract(
 			"https://internalunlikelyhostname.info/",
-			("internalunlikelyhostname.info", '', "internalunlikelyhostname", "info")
+			("internalunlikelyhostname.info", '', "internalunlikelyhostname", "info"),
 			)
 	assert_extract(
-			"https://internalunlikelyhostname.information/", ('', "internalunlikelyhostname", "information", '')
+			"https://internalunlikelyhostname.information/",
+			('', "internalunlikelyhostname", "information", ''),
 			)
 
 
@@ -114,46 +115,43 @@ def test_punycode():
 	assert_extract("https://xn--h1alffa9f.xn--p1ai", ("xn--h1alffa9f.xn--p1ai", '', "xn--h1alffa9f", "xn--p1ai"))
 	assert_extract("https://xN--h1alffa9f.xn--p1ai", ("xN--h1alffa9f.xn--p1ai", '', "xN--h1alffa9f", "xn--p1ai"))
 	assert_extract("https://XN--h1alffa9f.xn--p1ai", ("XN--h1alffa9f.xn--p1ai", '', "XN--h1alffa9f", "xn--p1ai"))
+
 	# Entries that might generate UnicodeError exception
+
 	# This subdomain generates UnicodeError 'IDNA does not round-trip'
-	assert_extract(
+	expected_domain_data = (
 			"xn--tub-1m9d15sfkkhsifsbqygyujjrw602gk4li5qqk98aca0w.google.com",
-			(
-					"xn--tub-1m9d15sfkkhsifsbqygyujjrw602gk4li5qqk98aca0w.google.com",
-					"xn--tub-1m9d15sfkkhsifsbqygyujjrw602gk4li5qqk98aca0w",
-					"google",
-					"com"
-					)
+			"xn--tub-1m9d15sfkkhsifsbqygyujjrw602gk4li5qqk98aca0w",
+			"google",
+			"com",
 			)
+	assert_extract("xn--tub-1m9d15sfkkhsifsbqygyujjrw602gk4li5qqk98aca0w.google.com", expected_domain_data)
+
 	# This subdomain generates UnicodeError 'incomplete punicode string'
-	assert_extract(
+	expected_domain_data = (
 			"xn--tub-1m9d15sfkkhsifsbqygyujjrw60.google.com",
-			(
-					"xn--tub-1m9d15sfkkhsifsbqygyujjrw60.google.com",
-					"xn--tub-1m9d15sfkkhsifsbqygyujjrw60",
-					"google",
-					"com"
-					)
+			"xn--tub-1m9d15sfkkhsifsbqygyujjrw60",
+			"google",
+			"com",
 			)
+	assert_extract("xn--tub-1m9d15sfkkhsifsbqygyujjrw60.google.com", expected_domain_data)
 
 
 def test_invalid_puny_with_puny():
-	assert_extract(
-			"https://xn--zckzap6140b352by.blog.so-net.xn--wcvs22d.hk",
-			(
-					"xn--zckzap6140b352by.blog.so-net.xn--wcvs22d.hk",
-					"xn--zckzap6140b352by.blog",
-					"so-net",
-					"xn--wcvs22d.hk"
-					)
+	expected_domain_data = (
+			"xn--zckzap6140b352by.blog.so-net.xn--wcvs22d.hk",
+			"xn--zckzap6140b352by.blog",
+			"so-net",
+			"xn--wcvs22d.hk",
 			)
+	assert_extract("https://xn--zckzap6140b352by.blog.so-net.xn--wcvs22d.hk", expected_domain_data)
 	assert_extract("https://xn--&.so-net.com", ("xn--&.so-net.com", "xn--&", "so-net", "com"))
 
 
 def test_puny_with_non_puny():
 	assert_extract(
 			"https://xn--zckzap6140b352by.blog.so-net.教育.hk",
-			("xn--zckzap6140b352by.blog.so-net.教育.hk", "xn--zckzap6140b352by.blog", "so-net", "教育.hk")
+			("xn--zckzap6140b352by.blog.so-net.教育.hk", "xn--zckzap6140b352by.blog", "so-net", "教育.hk"),
 			)
 
 
@@ -217,7 +215,9 @@ def test_private_domains():
 
 def test_ipv4():
 	assert_extract(
-			"https://127.0.0.1/foo/bar", ('', '', "127.0.0.1", ''), expected_ip_data=IPv4Address("127.0.0.1")
+			"https://127.0.0.1/foo/bar",
+			('', '', "127.0.0.1", ''),
+			expected_ip_data=IPv4Address("127.0.0.1"),
 			)
 
 
@@ -230,8 +230,7 @@ def test_ipv4_lookalike():
 
 
 def test_result_as_dict():
-	result = Domain._make(
-			extract_tld("https://admin:password1@www.google.com:666/secret/admin/interface?param1=42")
-			)
+	url = "https://admin:password1@www.google.com:666/secret/admin/interface?param1=42"
+	result = Domain._make(extract_tld(url))
 	expected_dict = {"subdomain": "www", "domain": "google", "suffix": "com"}
 	assert result._asdict() == expected_dict

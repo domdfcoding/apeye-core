@@ -23,14 +23,14 @@ from typing import Any, Dict, Optional, Union
 import idna  # implements IDNA 2008; Python's codec is only IDNA 2003
 from domdf_python_tools.doctools import prettify_docstrings
 
-__all__ = [
+__all__ = (
 		"EmailSyntaxError",
 		"ValidatedEmail",
 		"main",
 		"validate_email",
 		"validate_email_domain_part",
-		"validate_email_local_part"
-		]
+		"validate_email_local_part",
+		)
 
 # Based on RFC 2822 section 3.2.4 / RFC 5322 section 3.2.3, these
 # characters are permitted in email addresses (not taking into
@@ -157,7 +157,7 @@ class ValidatedEmail:
 
 		return f"<ValidatedEmail {self.email}>"
 
-	def __eq__(self, other) -> bool:  # noqa: MAN001
+	def __eq__(self, other) -> bool:  # noqa: MAN001,PRM002
 		"""
 		Return ``self == other``.
 		"""

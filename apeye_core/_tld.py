@@ -52,13 +52,13 @@ from urllib.parse import scheme_chars
 import idna
 from domdf_python_tools.compat import importlib_resources
 
-__all__ = [
+__all__ = (
 		"determine_suffix_index",
 		"extract_tld",
 		"extract_tlds_from_suffix_list",
 		"load_suffix_list",
-		"looks_like_ip"
-		]
+		"looks_like_ip",
+		)
 
 PUBLIC_SUFFIX_RE = re.compile(r"^(?P<suffix>[.*!]*\w[\S]*)", re.UNICODE | re.MULTILINE)
 PUBLIC_PRIVATE_SUFFIX_SEPARATOR: str = "// ===BEGIN PRIVATE DOMAINS==="
@@ -167,6 +167,8 @@ def extract_tld(url: str) -> Tuple[str, str, str]:
 		Domain(subdomain='forums.news', domain='cnn', suffix='com')
 		>>> Domain._make(extract_tld('https://forums.bbc.co.uk/')
 		Domain(subdomain='forums', domain='bbc', suffix='co.uk')
+
+	:param url:
 	"""  # noqa: D400
 
 	netloc_ = SCHEME_RE.sub('', url).partition('/')[0].partition('?')[0].partition('#')[0]
