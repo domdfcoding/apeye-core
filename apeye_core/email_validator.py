@@ -344,10 +344,10 @@ def validate_email_local_part(
 							c
 							for c in local
 							if not re.match('[' + (ATEXT if not allow_smtputf8 else ATEXT_UTF8) + ']', c)
-							})
+							}),
 					)
 			raise EmailSyntaxError(
-					f"The email address contains invalid characters before the @-sign: {bad_chars}."
+					f"The email address contains invalid characters before the @-sign: {bad_chars}.",
 					)
 
 		# It would be valid if internationalized characters were allowed by the caller.
@@ -458,7 +458,7 @@ def validate_email_domain_part(domain: str) -> Dict[str, str]:
 		raise EmailSyntaxError("The domain name %s is not valid. It should have a period." % domain_i18n)
 	if not re.search(r"[A-Za-z]\Z", ascii_domain):
 		raise EmailSyntaxError(
-				"The domain name %s is not valid. It is not within a valid top-level domain." % domain_i18n
+				"The domain name %s is not valid. It is not within a valid top-level domain." % domain_i18n,
 				)
 
 	# Return the IDNA ASCII-encoded form of the domain, which is how it
