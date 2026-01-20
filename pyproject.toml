@@ -42,10 +42,6 @@ Homepage = "https://github.com/domdfcoding/apeye-core"
 "Issue Tracker" = "https://github.com/domdfcoding/apeye-core/issues"
 "Source Code" = "https://github.com/domdfcoding/apeye-core"
 
-[tool.mkrecipe]
-conda-channels = [ "conda-forge", "domdfcoding",]
-extras = "all"
-
 [tool.whey]
 base-classifiers = [
     "Development Status :: 5 - Production/Stable",
