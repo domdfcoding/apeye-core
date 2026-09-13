@@ -738,9 +738,9 @@ class Domain(NamedTuple):
 
 		.. code-block:: python
 
-			>>> URL('https://forums.bbc.co.uk').domain.registered_domain
+			>>> URL("https://forums.bbc.co.uk").domain.registered_domain
 			'bbc.co.uk'
-			>>> URL('https://localhost:8080').domain.registered_domain
+			>>> URL("https://localhost:8080").domain.registered_domain
 			''
 		"""
 		if self.domain and self.suffix:
@@ -754,9 +754,9 @@ class Domain(NamedTuple):
 
 		.. code-block:: python
 
-			>>> URL('https://forums.bbc.co.uk/path/to/file').domain.fqdn
+			>>> URL("https://forums.bbc.co.uk/path/to/file").domain.fqdn
 			'forums.bbc.co.uk'
-			>>> URL('https://localhost:8080').domain.fqdn
+			>>> URL("https://localhost:8080").domain.fqdn
 			''
 		"""
 		if self.domain and self.suffix:
@@ -771,10 +771,10 @@ class Domain(NamedTuple):
 
 		.. code-block:: python
 
-			>>> URL('https://127.0.0.1/path/to/file').domain.ipv4
+			>>> URL("https://127.0.0.1/path/to/file").domain.ipv4
 			IPv4Address('127.0.0.1')
-			>>> URL('https://127.0.0.1.1/path/to/file').domain.ipv4
-			>>> URL('https://256.1.1.1').domain.ipv4
+			>>> URL("https://127.0.0.1.1/path/to/file").domain.ipv4
+			>>> URL("https://256.1.1.1").domain.ipv4
 		"""
 
 		if not (self.suffix or self.subdomain) and _tld.IP_RE.match(self.domain):
